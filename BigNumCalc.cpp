@@ -42,10 +42,9 @@ std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2) {
     if (!num1.empty()) num1.pop_back();
     if (!num2.empty()) num2.pop_back();
   }
-  // Remove leading zeros
-  diff.erase(std::find_if(diff.begin(), diff.end(),
-                          [](int digit) { return digit != 0; }),
-             diff.end());
+  diff.erase(diff.begin(), std::find_if(diff.begin(), diff.end(),
+                                        [](int digit) { return digit != 0; }));
+  if (diff.empty()) diff.push_back(0);
   return diff;
 }
 
